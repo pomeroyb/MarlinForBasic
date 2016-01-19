@@ -670,15 +670,15 @@ static void lcd_LED_menu()
 
 static void led_set_red()
 {
-	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+  	enquecommand_P((PSTR("M42 P5 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S255")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
 }
 
 static void led_set_green()
 {
-	enquecommand_P((PSTR("M42 P6 S255"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S255"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S0")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
 	
 	
@@ -686,45 +686,45 @@ static void led_set_green()
 
 static void led_set_blue()
 {
-	enquecommand_P((PSTR("M42 P6 S255"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S255"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S255")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
 	
 }
 
 static void led_set_purple()
 {
-	enquecommand_P((PSTR("M42 P6 S127"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S127"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S255")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
 	
 }
 
 static void led_set_pink()
 {
-	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S248")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S248")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S248")));  // Set Blue Pin
 }
 
 static void led_set_white()
 {
-	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S0")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
 }
 
 static void led_set_yellow()
 {
-	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S0")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
 }
 
 static void led_set_off()
 {
-	enquecommand_P((PSTR("M42 P6 S255"))); 	// Set Red Pin
-	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P5 S255"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S255")));  // Set Green Pin
 	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
 }
 
