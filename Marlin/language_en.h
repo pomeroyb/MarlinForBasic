@@ -129,6 +129,16 @@
 #define MSG_BABYSTEP_Y                      "Babystep Y"
 #define MSG_BABYSTEP_Z                      "Babystep Z"
 #define MSG_ENDSTOP_ABORT                   "Endstop abort"
+//	LCD LED BaseMenu	
+#define MSG_LED                             "LED Color"
+#define MSG_LED_RED                         "Red"
+#define MSG_LED_GREEN                       "Green"
+#define MSG_LED_BLUE                        "Blue"
+#define MSG_LED_PURPLE                      "Purple"
+#define MSG_LED_WHITE                       "White"
+#define MSG_LED_YELLOW                      "Yellow"
+#define MSG_LED_PINK                        "Pink"
+#define MSG_LED_OFF                         "Off"
 
 #define MSG_RECTRACT                        "Rectract"
 

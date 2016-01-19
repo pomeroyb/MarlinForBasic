@@ -53,6 +53,7 @@ extern bool powersupply;
 static void lcd_main_menu();
 static void lcd_tune_menu();
 static void lcd_prepare_menu();
+static void lcd_LED_menu();
 static void lcd_move_menu();
 static void lcd_control_menu();
 static void lcd_control_temperature_menu();
@@ -97,6 +98,16 @@ static void menu_action_setting_edit_callback_float5(const char* pstr, float* pt
 static void menu_action_setting_edit_callback_float51(const char* pstr, float* ptr, float minValue, float maxValue, menuFunc_t callbackFunc);
 static void menu_action_setting_edit_callback_float52(const char* pstr, float* ptr, float minValue, float maxValue, menuFunc_t callbackFunc);
 static void menu_action_setting_edit_callback_long5(const char* pstr, unsigned long* ptr, unsigned long minValue, unsigned long maxValue, menuFunc_t callbackFunc);
+
+/* Different LED Functions */
+static void led_set_red();
+static void led_set_green();
+static void led_set_blue();
+static void led_set_purple();
+static void led_set_pink();
+static void led_set_yellow();
+static void led_set_white();
+static void led_set_off();
 
 #define ENCODER_FEEDRATE_DEADZONE 10
 
@@ -634,9 +645,89 @@ static void lcd_prepare_menu()
         MENU_ITEM(gcode, MSG_SWITCH_PS_ON, PSTR("M80"));
     }
 #endif
+    MENU_ITEM(submenu, MSG_LED, lcd_LED_menu);
     MENU_ITEM(submenu, MSG_MOVE_AXIS, lcd_move_menu);
     END_MENU();
 }
+
+static void lcd_LED_menu()
+{
+	START_MENU();
+	MENU_ITEM(back, MSG_PREPARE, lcd_prepare_menu);
+	MENU_ITEM(function, MSG_LED_RED, led_set_red);
+	MENU_ITEM(function, MSG_LED_GREEN, led_set_green);
+	MENU_ITEM(function, MSG_LED_BLUE, led_set_blue);
+	MENU_ITEM(function, MSG_LED_PINK, led_set_pink);
+	MENU_ITEM(function, MSG_LED_PURPLE, led_set_purple);
+	MENU_ITEM(function, MSG_LED_YELLOW, led_set_yellow);
+	MENU_ITEM(function, MSG_LED_WHITE, led_set_white);
+	MENU_ITEM(function, MSG_LED_OFF, led_set_off);
+	END_MENU();
+	
+	//enquecommand_P((PSTR("G28"))); // move all axis home
+
+}
+
+static void led_set_red()
+{
+	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
+}
+
+static void led_set_green()
+{
+	enquecommand_P((PSTR("M42 P6 S255"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
+	
+	
+}
+
+static void led_set_blue()
+{
+	enquecommand_P((PSTR("M42 P6 S255"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
+	
+}
+
+static void led_set_purple()
+{
+	enquecommand_P((PSTR("M42 P6 S127"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
+	
+}
+
+static void led_set_pink()
+{
+	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S248")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S248")));  // Set Blue Pin
+}
+
+static void led_set_white()
+{
+	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
+}
+
+static void led_set_yellow()
+{
+	enquecommand_P((PSTR("M42 P6 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
+}
+
+static void led_set_off()
+{
+	enquecommand_P((PSTR("M42 P6 S255"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P5 S255")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S255")));  // Set Blue Pin
+}
+
 
 #ifdef DELTA_CALIBRATION_MENU
 static void lcd_delta_calibrate_menu()
