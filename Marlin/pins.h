@@ -656,7 +656,7 @@
   #endif
 
   #if MB(RAMPS_13_EFB) || MB(RAMPS_13_EFF) || MB(AZTEEG_X3)
-    #define FAN_PIN            -1 // (Set to -1 to avoid an error with AutoFanPin)
+    #define FAN_PIN            10 // (Set to 10 to avoid an error with AutoFanPin)
   #elif MB(AZTEEG_X3_PRO)
     #define FAN_PIN            11 // Last Heater Pin on board
   #else
