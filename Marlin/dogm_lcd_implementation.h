@@ -139,6 +139,11 @@ static void lcd_implementation_init()
 			u8g.drawStr90(92,57,"8");
 			u8g.drawStr(100,61,"glib");
 	   } while( u8g.nextPage() );
+    
+    // Turn on White LED lights
+    enquecommand_P((PSTR("M42 P5 S0"))); 	// Set Red Pin
+	enquecommand_P((PSTR("M42 P6 S0")));  // Set Green Pin
+	enquecommand_P((PSTR("M42 P4 S0")));  // Set Blue Pin
 }
 
 static void lcd_implementation_clear()
