@@ -328,6 +328,23 @@ static void lcd_sdcard_resume() { card.startFileprint(); }
 
 static void lcd_sdcard_stop()
 {
+    float feedrate = homing_feedrate[Z_AXIS];
+    // Move Z Axis to maximum
+    plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], Z_MAX_POS, current_position[E_AXIS], feedrate, active_extruder);
+    st_synchronize();
+    
+    // Turn off heaters
+    setTargetHotend0(0);
+    setTargetHotend1(0);
+    setTargetHotend2(0);
+    setTargetBed(0);
+    fanSpeed = 0;
+    
+    lcd_setstatus(MSG_PRINT_ABORTED);
+    // Go back to the info screen
+    lcd_return_to_status();
+    
+    // Now release the file    
     card.sdprinting = false;
     card.closefile();
     quickStop();
@@ -339,7 +356,7 @@ static void lcd_sdcard_stop()
 
 	cancel_heatup = true;
 
-	lcd_setstatus(MSG_PRINT_ABORTED);
+
 }
 
 /* Menu implementation */
@@ -362,6 +379,9 @@ static void lcd_main_menu()
     {
         if (card.isFileOpen())
         {
+            #ifdef FILAMENTCHANGEENABLE
+                MENU_ITEM(gcode, MSG_FILAMENTCHANGE, PSTR("M600"));
+            #endif
             if (card.sdprinting)
                 MENU_ITEM(function, MSG_PAUSE_PRINT, lcd_sdcard_pause);
             else
@@ -459,9 +479,6 @@ static void lcd_tune_menu()
       MENU_ITEM(submenu, MSG_BABYSTEP_Y, lcd_babystep_y);
     #endif //BABYSTEP_XY
     MENU_ITEM(submenu, MSG_BABYSTEP_Z, lcd_babystep_z);
-#endif
-#ifdef FILAMENTCHANGEENABLE
-     MENU_ITEM(gcode, MSG_FILAMENTCHANGE, PSTR("M600"));
 #endif
     END_MENU();
 }
